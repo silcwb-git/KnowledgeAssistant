@@ -26,6 +26,11 @@ public class KnowledgeItemsController : ControllerBase
         return item is null ? NotFound() : Ok(item);
     }
 
+    // GET /api/knowledgeitems/count
+    [HttpGet("count")]
+    public ActionResult<int> Count()
+        => Ok(_store.Items.Count);
+
     [HttpPost]
     public ActionResult<KnowledgeItem> Create(KnowledgeItem item)
     {

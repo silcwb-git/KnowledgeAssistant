@@ -85,8 +85,49 @@ Retrieve — your question is tokenized and scored against the knowledge base to
 Generate — the retrieved context is sent to the GPT Maker agent, which answers grounded in that context
 Return — the answer comes back with the sources it used
 
+## 🧠 Function Calling (Intentions)
+
+The agent doesn't just respond — it **acts**. Using the GPT Maker **intentions** mechanism, the agent decides to call real endpoints of our API to execute actions, reading and writing to the knowledge base.
+
+### Flow
+
+1. The user asks a question that requires an action (e.g. *"how many items are in the base?"*)
+2. The `ChatService` performs retrieval and sends the context to the agent
+3. The agent **recognizes the intention** and calls the configured webhook
+4. The API executes the action and returns the result
+5. GPT Maker interprets the response and generates a clear answer to the user
+
+### Configured intentions
+
+| Intention | Method | Endpoint | Description |
+|-----------|--------|----------|-------------|
+| Count knowledge base items | `GET` | `/api/knowledgeitems/count` | Returns the number of items |
+| Create knowledge base item | `POST` | `/api/knowledgeitems` | Adds a new item |
+
+### Usage example
+
+**User:** *"how many items are in the knowledge base?"*
+
+**Agent:** *"The knowledge base has 8 items."* 👋
+
+**User:** *"add to the base: how does home office work? the employee can work 2 days a week from home, category: policies"*
+
+**Agent:** *"The item 'Home Office' was added to the knowledge base."*
+
+### Architecture
+```
+User → GPT Maker (RAG agent)
+│
+├── Retrieval (search in the base)
+└── Intention (webhook) → our .NET API
+├── GET  /api/knowledgeitems/count
+└── POST /api/knowledgeitems
+```
+
+> **Note:** in development, the API is exposed publicly via **ngrok** so that GPT Maker (cloud) can reach it. In production, just point the intention to the API's public URL.
+
 ## 🛣️ Roadmap
- Function calling — the agent deciding to invoke real services/flows
+ Function calling — the agent deciding to invoke real services/flows - checked 
  Vector search with Qdrant for semantic retrieval
  Persistence with EF Core + SQLite
  Simple chat front-end (Angular)
