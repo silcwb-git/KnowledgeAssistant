@@ -12,6 +12,7 @@ A production-ready **RAG (Retrieval-Augmented Generation)** API built with **.NE
 - 🔐 **Secure by default** — API key stored via .NET user-secrets, never committed to the repo
 
 ## 🏗️ Architecture
+```
 Api/
 ├── Models/          → Request/response DTOs (ChatRequest, ChatResponse, KnowledgeItem)
 ├── Options/         → AiOptions (BaseUrl, ApiKey, AgentId) via Options pattern
@@ -25,6 +26,7 @@ Api/
 └── Controllers/     → REST endpoints
 ├── ChatController.cs           → POST /api/chat
 └── KnowledgeItemsController.cs → CRUD for knowledge items
+```
 
 
 ## 🚀 Getting Started
