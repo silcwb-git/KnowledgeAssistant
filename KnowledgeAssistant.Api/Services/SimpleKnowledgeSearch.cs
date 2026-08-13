@@ -22,7 +22,7 @@ public class SimpleKnowledgeSearch : IKnowledgeSearch
     {
         var words = Tokenize(query);
 
-        return _store.Items
+        return _store.GetAll()
             .Select(item => new { Item = item, Score = Score(item, words) })
             .Where(x => x.Score > 0)
             .OrderByDescending(x => x.Score)

@@ -1,0 +1,53 @@
+<div class="chat-container">
+  <!-- Header -->
+  <header class="chat-header">
+    <div class="header-left">
+      <div class="logo">🤖</div>
+      <div>
+        <h1>Knowledge Assistant</h1>
+        <span class="status"><span class="dot"></span> Online</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mensagens -->
+  <div class="messages" #scrollContainer>
+    <div *ngFor="let msg of messages" class="message-row" [class.user]="msg.role === 'user'">
+      <div class="avatar" [class.bot-avatar]="msg.role === 'bot'">
+        {{ msg.role === 'user' ? '👤' : '🤖' }}
+      </div>
+      <div class="bubble" [class.user-bubble]="msg.role === 'user'">
+        <div class="msg-text">{{ msg.text }}</div>
+        <span class="time">{{ msg.time }}</span>
+      </div>
+    </div>
+
+    <!-- Indicador de digitação -->
+    <div *ngIf="typing" class="message-row">
+      <div class="avatar bot-avatar">🤖</div>
+      <div class="bubble typing-bubble">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de ferramentas -->
+  <div class="toolbar">
+    <button class="tool-btn count" (click)="doCount()" [disabled]="loading">📊 Contar</button>
+    <button class="tool-btn create" (click)="doCreate()" [disabled]="loading">➕ Criar</button>
+    <button class="tool-btn search" (click)="doSearch()" [disabled]="loading">🔍 Buscar</button>
+  </div>
+
+  <!-- Input -->
+  <div class="input-area">
+    <input
+      [(ngModel)]="input"
+      (keyup.enter)="send()"
+      placeholder="Digite sua pergunta..."
+      [disabled]="loading"
+    />
+    <button class="send-btn" (click)="send()" [disabled]="loading || !input.trim()">➤</button>
+  </div>
+</div>
