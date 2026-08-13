@@ -67,9 +67,9 @@ The API runs at `http://localhost:5219` (Swagger at `/swagger`).
 ### 2. Configure your AI credentials (user-secrets)
 ```bash
 dotnet user-secrets init
-dotnet user-secrets set "AiOptions:ApiKey" "YOUR_GPTMAKER_TOKEN"
-dotnet user-secrets set "AiOptions:AgentId" "YOUR_AGENT_ID"
-dotnet user-secrets set "AiOptions:BaseUrl" "https://api.gptmaker.ai"
+dotnet user-secrets set "Ai:ApiKey" "YOUR_GPTMAKER_TOKEN"
+dotnet user-secrets set "Ai:BaseUrl" "https://api.gptmaker.ai"
+dotnet user-secrets set "Ai:Model" "gpt-4o-mini"
 ```
 
 🔒 **Security:** credentials live in user-secrets, outside the repository. Never commit your API key.
@@ -166,6 +166,26 @@ The agent doesn't just respond — it **acts**. Using the GPT Maker **intentions
 
 ---
 
-## 📄 License
+---
 
-MIT
+## 📄 License & Copyright
+
+**© 2026 KETHER — Automation & AI**
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+---
+
+## 👩‍💼 Author
+
+**Silvana Azevedo Siqueira** — *CEO & Founder @ KETHER*
+
+> 🤖 Automation & AI specialist building intelligent, end-to-end solutions.
+
+| 💼 | 📱 | 🔗 |
+|---|---|---|
+| **KETHER — Automation & AI** | **+55 41 99290-6547** | [LinkedIn](https://www.linkedin.com/in/ssas4) |
+
+---
+
+*Made with 💜 by Silvana Azevedo Siqueira · KETHER — Automation & AI*
