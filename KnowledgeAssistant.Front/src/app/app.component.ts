@@ -28,7 +28,7 @@ export class AppComponent {
   searchResults: KnowledgeItem[] = [];
 
   constructor(private api: ApiService) {
-    this.addBot('Olá! 👋 Eu sou o assistente da base de conhecimento. Pergunte qualquer coisa sobre as políticas, ou use os botões abaixo para contar, criar ou buscar itens.');
+    this.addBot('Olá! 👋 Eu sou o RAG, assistente da base de conhecimento da KETHER. Pergunte qualquer coisa sobre as políticas, ou use os botões abaixo para contar, criar ou buscar itens.');
   }
 
   send() {
